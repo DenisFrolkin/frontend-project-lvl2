@@ -1,13 +1,17 @@
 {
   "name": "frontend-project-lvl2",
   "version": "1.0.0",
+  "type": "module",
+  "bin": {
+    "gendiff": "bin/gendiff.js"
+  },
   "description": "[![Actions Status](https://github.com/DenisFrolkin/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/DenisFrolkin/frontend-project-lvl2/actions)",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
-    "type": "module",
+    "type": "git",
     "url": "git+https://github.com/DenisFrolkin/frontend-project-lvl2.git"
   },
   "author": "",

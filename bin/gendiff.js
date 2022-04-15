@@ -6,7 +6,7 @@ const program = new Command();
 program
 .version('1.0.0', '-V', '--version')
 .description('Compares two configuration files and shows a difference.')
-.arguments('<filepath1>', '<filepath2>')
+.arguments('<filepath1> <filepath2>')
 .option('-f, --FormData<type>')
 
 program.parse(process.argv);

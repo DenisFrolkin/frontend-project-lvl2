@@ -1,5 +1,5 @@
 const gendiff = () => {
-    res = 'result'
+    const res = 'result'
     return res;
 };
 export default gendiff;

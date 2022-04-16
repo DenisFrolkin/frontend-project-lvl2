@@ -1,4 +1,4 @@
-const gendiff = (path1, path2, format) => { 
+const gendiff = () => { 
     //
     res = 'result'
     return res;

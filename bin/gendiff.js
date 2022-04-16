@@ -14,4 +14,4 @@ program
     
     program.parse(process.argv);
 
-gendiff();   
+console.log(gendiff());   

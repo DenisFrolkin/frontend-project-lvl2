@@ -1,5 +1,4 @@
-const gendiff = () => { 
-    //
+const gendiff = () => {
     res = 'result'
     return res;
 };

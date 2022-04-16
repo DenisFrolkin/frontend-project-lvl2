@@ -2,6 +2,7 @@
 
 import gendiff from '../src/export.js';
 
+console.log(gendiff());   
 
 import { Command } from 'commander';
 const program = new Command();
@@ -14,4 +15,4 @@ program
     
     program.parse(process.argv);
 
-console.log(gendiff());   
+

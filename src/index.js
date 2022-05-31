@@ -6,13 +6,9 @@ import _ from 'lodash';
 
     const gendiff = (filepath1, filepath2) => {
       const obj1 = JSON.parse(readFileSync(path.resolve(process.cwd(), filepath1)));
-      console.log(obj1);
       const obj2 = JSON.parse(readFileSync(path.resolve(process.cwd(), filepath2)));
-      console.log(obj2);
-
-      
+           
       const keys = _.sortBy(Object.keys({...obj1, ...obj2}));
-      console.log(keys)
       const newData = keys.map((key) => {
         const res = {};
         if (obj1[key] === obj2[key]) {
@@ -37,8 +33,6 @@ import _ from 'lodash';
           return res;
         }
       });
-console.log(newData)
-
 
       console.log('{')
       for (const obj of newData) {

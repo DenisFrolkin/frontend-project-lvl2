@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import path from 'path';
 import { readFileSync } from 'fs'
 import _ from 'lodash';

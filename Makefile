@@ -14,6 +14,6 @@ publish:
 	npm publish --dry-run
 	
 hello:
-	console.log(Hello, World!)
+	console.log('Hello, World!')
 
 .PHONY: test

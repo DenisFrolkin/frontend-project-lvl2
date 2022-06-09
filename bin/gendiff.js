@@ -12,3 +12,5 @@ program
   .action((filepath1, filepath2) => gendiff(filepath1, filepath2));
 
 program.parse(process.argv);
+
+console.log(gendiff);

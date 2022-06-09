@@ -42,7 +42,7 @@ const gendiff = (filepath1, filepath2) => {
     diff = `${diff}/n - ${obj.newKey}: ${obj.value1}`;
     }
     else {
-    diff = `${diff}/n + ${obj.newKey}: ${obj.value2}`);
+    diff = `${diff}/n + ${obj.newKey}: ${obj.value2}`;
     }
   }
   diff = `${diff}/n}`

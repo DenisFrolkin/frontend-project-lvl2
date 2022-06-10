@@ -23,32 +23,25 @@ const gendiff = (filepath1, filepath2) => {
       res.newKey = key;
       res.value1 = obj1[key];
       return res;
-    } else {
-      res.newKey = key;
-      res.value2 = obj2[key];
-      return res;
-    }
+    } res.newKey = key;
+    res.value2 = obj2[key];
+    return res;
   });
 
   let diff = '{';
   for (const obj of newData) {
     if (obj.value1 === obj.value2) {
       diff = `${diff}\n   ${obj.newKey}: ${obj.value1}`;
-    }
-    else if (obj.value1 && obj.value2) {
-    diff = `${diff}\n - ${obj.newKey}: ${obj.value1}\n + ${obj.newKey}: ${obj.value2}`;
-    }
-    else if (!obj.value2) {
-    diff = `${diff}\n - ${obj.newKey}: ${obj.value1}`;
-    }
-    else {
-    diff = `${diff}\n + ${obj.newKey}: ${obj.value2}`;
+    } else if (obj.value1 && obj.value2) {
+      diff = `${diff}\n - ${obj.newKey}: ${obj.value1}\n + ${obj.newKey}: ${obj.value2}`;
+    } else if (!obj.value2) {
+      diff = `${diff}\n - ${obj.newKey}: ${obj.value1}`;
+    } else {
+      diff = `${diff}\n + ${obj.newKey}: ${obj.value2}`;
     }
   }
   diff = `${diff}\n}`;
   return diff;
-  };
-
-
+};
 
 export default gendiff;

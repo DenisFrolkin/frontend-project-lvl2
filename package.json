@@ -8,7 +8,7 @@
   "description": "[![Actions Status](https://github.com/DenisFrolkin/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/DenisFrolkin/frontend-project-lvl2/actions)",
   "main": "./src/export.js",
   "scripts": {
-    "test": "npx jest"
+    "test": "npx --no-warnings --experimental-vm-modules jest"
   },
   "repository": {
     "type": "git",

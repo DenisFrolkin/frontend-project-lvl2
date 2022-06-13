@@ -1,6 +1,5 @@
 import path from 'path';
 import { dirname } from 'path';
-import { hasUncaughtExceptionCaptureCallback } from 'process';
 import { fileURLToPath } from 'url';
 import gendiff from '../src/index.js';
 

@@ -16,4 +16,7 @@ publish:
 hello:
 	echo Hello, World!
 
+test:
+	npm test
+	
 .PHONY: test

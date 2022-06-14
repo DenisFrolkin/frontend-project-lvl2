@@ -8,14 +8,8 @@ const ext = (filepath) => path.extname(filepath);
 const data = (filepath) => readFileSync(path.resolve(process.cwd(), filepath));
 
 const gendiff = (filepath1, filepath2) => {
-  const data1 = data(filepath1);
-  const data2 = data(filepath2);
-
-  const ext1 = ext(filepath1);
-  const ext2 = ext(filepath2);
-
-  const obj1 = parse(data1, ext1);
-  const obj2 = parse(data2, ext2);
+  const obj1 = parse(data(filepath1), ext(filepath1));
+  const obj2 = parse(data(filepath2), ext(filepath2));
 
   const keys = _.sortBy(Object.keys({ ...obj1, ...obj2 }));
 

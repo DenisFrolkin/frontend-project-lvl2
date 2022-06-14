@@ -6,10 +6,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const getFixturePath = (filename) => path.join(__dirname, '__fixtures__', filename);
+const experiment = (filename) => path.resolve(process.cwd(), '__tests__', '__fixtures__', filename);
 
+console.log(__filename);
 console.log(__dirname);
+console.log(process.cwd());
+console.log(path.resolve(process.cwd(), '__tests__', '__fixtures__', 'file1.json'));
 console.log(getFixturePath('file1.json'));
-console.log(typeof gendiff(getFixturePath('file1.json'), getFixturePath('file2.json')));
 
 const correctResult = `{
  - follow: false

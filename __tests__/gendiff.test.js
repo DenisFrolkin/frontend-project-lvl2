@@ -1,3 +1,4 @@
+import { readFileSync } from 'fs';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import gendiff from '../src/index.js';
@@ -13,6 +14,7 @@ console.log(__dirname);
 console.log(process.cwd());
 console.log(path.resolve(process.cwd(), '__tests__', '__fixtures__', 'file1.json'));
 console.log(getFixturePath('file1.json'));
+console.log(readFileSync(getFixturePath('file1.yml'), 'utf8'));
 
 const correctResult = `{
  - follow: false

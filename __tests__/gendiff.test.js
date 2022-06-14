@@ -1,5 +1,4 @@
-import path from 'path';
-import { dirname } from 'path';
+import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import gendiff from '../src/index.js';
 
@@ -12,8 +11,7 @@ console.log(__dirname);
 console.log(getFixturePath('file1.json'));
 console.log(typeof gendiff(getFixturePath('file1.json'), getFixturePath('file2.json')));
 
-const correctResult =
-`{
+const correctResult = `{
  - follow: false
    host: hexlet.io
  - proxy: 123.234.53.22

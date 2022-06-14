@@ -14,7 +14,7 @@ console.log(__dirname);
 console.log(process.cwd());
 console.log(path.resolve(process.cwd(), '__tests__', '__fixtures__', 'file1.json'));
 console.log(getFixturePath('file1.json'));
-console.log(readFileSync(getFixturePath('file1.yml'), 'utf8'));
+console.log(readFileSync(getFixturePath('correctfile.txt'), 'utf8'));
 
 const correctResult = `{
  - follow: false

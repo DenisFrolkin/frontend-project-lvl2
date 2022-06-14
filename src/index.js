@@ -21,12 +21,7 @@ const gendiff = (filepath1, filepath2) => {
 
   const newData = keys.map((key) => {
     const res = {};
-    if (obj1[key] === obj2[key]) {
-      res.newKey = key;
-      res.value1 = obj1[key];
-      res.value2 = obj2[key];
-      return res;
-    } if (obj1[key] && obj2[key]) {
+    if (obj1[key] && obj2[key]) {
       res.newKey = key;
       res.value1 = obj1[key];
       res.value2 = obj2[key];

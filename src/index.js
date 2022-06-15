@@ -2,14 +2,14 @@
 import path from 'path';
 import { readFileSync } from 'fs';
 import _ from 'lodash';
-import parse from './parsers.js';
+import parser from './parsers.js';
 
 const ext = (filepath) => path.extname(filepath);
 const data = (filepath) => readFileSync(path.resolve(process.cwd(), filepath));
 
 const gendiff = (filepath1, filepath2) => {
-  const obj1 = parse(data(filepath1), ext(filepath1));
-  const obj2 = parse(data(filepath2), ext(filepath2));
+  const obj1 = parser(data(filepath1), ext(filepath1));
+  const obj2 = parser(data(filepath2), ext(filepath2));
 
   const keys = _.sortBy(Object.keys({ ...obj1, ...obj2 }));
 

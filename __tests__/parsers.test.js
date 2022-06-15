@@ -10,13 +10,13 @@ const getFixturePath = (filename) => path.join(__dirname, '__fixtures__', filena
 const experiment = (filename) => path.resolve(process.cwd(), '__tests__', '__fixtures__', filename);
 
 const correctResult = {
-  "host": "hexlet.io",
-  "timeout": 50,
-  "proxy": "123.234.53.22",
-  "follow": false
+  host: 'hexlet.io',
+  timeout: 50,
+  proxy: '123.234.53.22',
+  follow: false,
 };
 
-console.log(typeof parser(readFileSync(getFixturePath('file1.json')), '.json'));
+console.log(parser(readFileSync(getFixturePath('file1.json')), '.json'));
 
 test('parse', () => {
   expect(parser(readFileSync(getFixturePath('file1.json')), '.json')).toEqual(correctResult);

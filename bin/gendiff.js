@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
 import gendiff from '../src/index.js';
+import stylish from '../src/stylish.js';
 
 const program = new Command();
 

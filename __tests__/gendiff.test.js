@@ -25,6 +25,51 @@ const correctResult = `{
  + verbose: true
 }`;
 
+const correctNested = `{
+    common: {
+      + follow: false
+        setting1: Value 1
+      - setting2: 200
+      - setting3: true
+      + setting3: null
+      + setting4: blah blah
+      + setting5: {
+            key5: value5
+        }
+        setting6: {
+            doge: {
+              - wow: 
+              + wow: so much
+            }
+            key: value
+          + ops: vops
+        }
+    }
+    group1: {
+      - baz: bas
+      + baz: bars
+        foo: bar
+      - nest: {
+            key: value
+        }
+      + nest: str
+    }
+  - group2: {
+        abc: 12345
+        deep: {
+            id: 45
+        }
+    }
+  + group3: {
+        deep: {
+            id: {
+                number: 45
+            }
+        }
+        fee: 100500
+    }
+}`;
+
 test('gendiff', () => {
   expect(gendiff(getFixturePath('file1.json'), getFixturePath('file2.json'))).toEqual(correctResult);
   expect(gendiff(getFixturePath('file1.yml'), getFixturePath('file2.yml'))).toEqual(correctResult);
@@ -41,4 +86,10 @@ test('stringType', () => {
   expect(typeof gendiff(getFixturePath('file1.json'), getFixturePath('file2.yml'))).toEqual('string');
   expect(typeof gendiff(getFixturePath('file1.json'), getFixturePath('file2.yaml'))).toEqual('string');
   expect(typeof gendiff(getFixturePath('file1.yml'), getFixturePath('file2.yaml'))).toEqual('string');
+});
+
+test('nested', () => {
+  expect(gendiff(getFixturePath('file1nested.json'), getFixturePath('file2nested.json'))).toEqual(correctNested);
+  expect(gendiff(getFixturePath('file1nested.yaml'), getFixturePath('file2nested.yaml'))).toEqual(correctNested);
+  expect(gendiff(getFixturePath('file1nested.json'), getFixturePath('file2nested.yaml'))).toEqual(correctNested);
 });

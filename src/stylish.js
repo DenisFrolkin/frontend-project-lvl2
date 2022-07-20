@@ -1,17 +1,20 @@
 import _ from 'lodash';
 
+
+
+
 const stylish = (diffData, spaceCount = 1, replacer = '    ') => {
-  const stringify = (data, stylishDeep, spaceCount = 1, replacer = '    ') => {
-    const iteraction = (node, deeper) => {
-      if (!_.isObject(node)) {
-        return `${node}`;
-      }
-      const entries = Object.entries(node);
-      const result = entries.flatMap(([key, value]) => `${replacer.repeat(spaceCount * deeper)}${key}: ${iteraction(value, deeper + 1)}`).join('\n');
-      return `{\n${result}\n${replacer.repeat((deeper - 1) * spaceCount)}}`;
+    const stringify = (data, stylishDeep, spaceCount = 1, replacer = '    ') => {
+        const iteraction = (node, deeper) => {
+          if (!_.isObject(node)) {
+            return `${node}`;
+          }
+          const entries = Object.entries(node);
+          const result = entries.flatMap(([key, value]) => `${replacer.repeat(spaceCount * deeper)}${key}: ${iteraction(value, deeper + 1)}`).join('\n');
+          return `{\n${result}\n${replacer.repeat((deeper - 1) * spaceCount)}}`;
+        };
+        return iteraction(data, stylishDeep + 2);
     };
-    return iteraction(data, stylishDeep + 2);
-  };
   const iter = (node, deeper) => {
     const objects = node.flatMap((obj) => {
       const replacers = {

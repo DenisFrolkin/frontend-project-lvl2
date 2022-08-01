@@ -3,6 +3,8 @@ import path from 'path';
 import { readFileSync } from 'fs';
 import _ from 'lodash';
 import parser from './parsers.js';
+import stylish from '../formatters/stylish.js';
+import plain from '../formatters/stylish.js';
 
 const ext = (filepath) => path.extname(filepath);
 const data = (filepath) => readFileSync(path.resolve(process.cwd(), filepath));
@@ -44,8 +46,10 @@ const gendiff = (filepath1, filepath2, formater) => {
       res.name = key;
       res.type = 'deleted';
       res.value = obj1[key];
+      
       return res;
     });
+
     return diff;
   };
 

@@ -10,23 +10,39 @@ const getFixturePath = (filename) => path.join(__dirname, '__fixtures__', filena
 const experiment = (filename) => path.resolve(process.cwd(), '__tests__', '__fixtures__', filename);
 
 const correctResult = {
-  host: 'hexlet.io',
-  timeout: 50,
-  proxy: '123.234.53.22',
-  follow: false,
+  common: {
+    setting1: 'Value 1',
+    setting2: 200,
+    setting3: true,
+    setting6: {
+      key: "value",
+      doge: {
+        wow: '',
+      },
+    },
+  },
+  group1: {
+    baz: 'bas',
+    foo: 'bar',
+    nest: {
+      key: 'value',
+    },
+  },
+  group2: {
+    abc: 12345,
+    deep: {
+      id: 45,
+    },
+  },
 };
-
-console.log(parser(readFileSync(getFixturePath('file1.json')), '.json'));
 
 test('parse', () => {
   expect(parser(readFileSync(getFixturePath('file1.json')), '.json')).toEqual(correctResult);
-  expect(parser(readFileSync(getFixturePath('file1.yml')), '.yml')).toEqual(correctResult);
   expect(parser(readFileSync(getFixturePath('file1.yaml')), '.yaml')).toEqual(correctResult);
 });
 
 test('ObjectType', () => {
   expect(typeof parser(readFileSync(getFixturePath('file1.json')), '.json')).toEqual('object');
-  expect(typeof parser(readFileSync(getFixturePath('file1.yml')), '.yml')).toEqual('object');
   expect(typeof parser(readFileSync(getFixturePath('file1.yaml')), '.yaml')).toEqual('object');
   expect(typeof parser(readFileSync(getFixturePath('correctfile.txt')), '.txt')).toEqual('undefined');
 });

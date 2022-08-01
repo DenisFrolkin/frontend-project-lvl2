@@ -2,6 +2,8 @@ import { readFileSync } from 'fs';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import gendiff from '../src/index.js';
+import stylish from '../formatters/stylish.js';
+import plain from '../formatters/plain.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -14,82 +16,24 @@ console.log(__dirname);
 console.log(process.cwd());
 console.log(path.resolve(process.cwd(), '__tests__', '__fixtures__', 'file1.json'));
 console.log(getFixturePath('file1.json'));
-console.log(readFileSync(getFixturePath('correctfile.txt'), 'utf8'));
 
-const correctResult = `{
- - follow: false
-   host: hexlet.io
- - proxy: 123.234.53.22
- - timeout: 50
- + timeout: 20
- + verbose: true
-}`;
+const correctstylish = readFileSync(getFixturePath('correctNested.yaml'), 'utf8');
+const correctplain = readFileSync(getFixturePath('correctPlain.yaml'), 'utf8');
 
-const correctNested = `{
-    common: {
-      + follow: false
-        setting1: Value 1
-      - setting2: 200
-      - setting3: true
-      + setting3: null
-      + setting4: blah blah
-      + setting5: {
-            key5: value5
-        }
-        setting6: {
-            doge: {
-              - wow: 
-              + wow: so much
-            }
-            key: value
-          + ops: vops
-        }
-    }
-    group1: {
-      - baz: bas
-      + baz: bars
-        foo: bar
-      - nest: {
-            key: value
-        }
-      + nest: str
-    }
-  - group2: {
-        abc: 12345
-        deep: {
-            id: 45
-        }
-    }
-  + group3: {
-        deep: {
-            id: {
-                number: 45
-            }
-        }
-        fee: 100500
-    }
-}`;
+test('gendiff stylish', () => {
+  expect(gendiff(getFixturePath('file1.json'), getFixturePath('file2.json'), stylish)).toEqual(correctstylish);
+  expect(gendiff(getFixturePath('file1.yaml'), getFixturePath('file2.yaml'), stylish)).toEqual(correctstylish);
+  expect(gendiff(getFixturePath('file1.json'), getFixturePath('file2.yaml'), stylish)).toEqual(correctstylish);
+});
 
-test('gendiff', () => {
-  expect(gendiff(getFixturePath('file1.json'), getFixturePath('file2.json'))).toEqual(correctResult);
-  expect(gendiff(getFixturePath('file1.yml'), getFixturePath('file2.yml'))).toEqual(correctResult);
-  expect(gendiff(getFixturePath('file1.yaml'), getFixturePath('file2.yaml'))).toEqual(correctResult);
-  expect(gendiff(getFixturePath('file1.json'), getFixturePath('file2.yml'))).toEqual(correctResult);
-  expect(gendiff(getFixturePath('file1.json'), getFixturePath('file2.yaml'))).toEqual(correctResult);
-  expect(gendiff(getFixturePath('file1.yml'), getFixturePath('file2.yaml'))).toEqual(correctResult);
+test('gendiff plain', () => {
+  expect(gendiff(getFixturePath('file1.json'), getFixturePath('file2.json'), plain)).toEqual(correctplain);
+  expect(gendiff(getFixturePath('file1.yaml'), getFixturePath('file2.yaml'), plain)).toEqual(correctplain);
+  expect(gendiff(getFixturePath('file1.json'), getFixturePath('file2.yaml'), plain)).toEqual(correctplain);
 });
 
 test('stringType', () => {
-  expect(typeof gendiff(getFixturePath('file1.json'), getFixturePath('file2.json'))).toEqual('string');
-  expect(typeof gendiff(getFixturePath('file1.yml'), getFixturePath('file2.yml'))).toEqual('string');
-  expect(typeof gendiff(getFixturePath('file1.yaml'), getFixturePath('file2.yaml'))).toEqual('string');
-  expect(typeof gendiff(getFixturePath('file1.json'), getFixturePath('file2.yml'))).toEqual('string');
-  expect(typeof gendiff(getFixturePath('file1.json'), getFixturePath('file2.yaml'))).toEqual('string');
-  expect(typeof gendiff(getFixturePath('file1.yml'), getFixturePath('file2.yaml'))).toEqual('string');
-});
-
-test('nested', () => {
-  expect(gendiff(getFixturePath('file1nested.json'), getFixturePath('file2nested.json'))).toEqual(correctNested);
-  expect(gendiff(getFixturePath('file1nested.yaml'), getFixturePath('file2nested.yaml'))).toEqual(correctNested);
-  expect(gendiff(getFixturePath('file1nested.json'), getFixturePath('file2nested.yaml'))).toEqual(correctNested);
+  expect(typeof gendiff(getFixturePath('file1.json'), getFixturePath('file2.json'), stylish)).toEqual('string');
+  expect(typeof gendiff(getFixturePath('file1.yaml'), getFixturePath('file2.yaml'), stylish)).toEqual('string');
+  expect(typeof gendiff(getFixturePath('file1.json'), getFixturePath('file2.yaml'), stylish)).toEqual('string');
 });

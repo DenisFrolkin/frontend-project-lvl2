@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
 import gendiff from '../src/index.js';
-import stylish from '../formatters/stylish.js';
-import plain from '../formatters/plain.js';
 import chooseFormatter from '../formatters/index.js';
 
 const program = new Command();

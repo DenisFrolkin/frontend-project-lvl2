@@ -13,4 +13,7 @@ lint:
 publish:
 	npm publish --dry-run
 
+hello:
+	echo 'Hello, Hexlet'
+
 .PHONY: test

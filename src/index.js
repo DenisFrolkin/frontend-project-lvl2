@@ -28,14 +28,14 @@ const gendiff = (filepath1, filepath2, formater) => {
         res.value = obj1[key];
         return res;
       }
-      if (obj1.hasOwnProperty(key) && obj2.hasOwnProperty(key)) {
+      if (_.has(obj1, key) && _.has(obj2, key)) {
         res.name = key;
         res.type = 'changed';
         res.value1 = obj1[key];
         res.value2 = obj2[key];
         return res;
       }
-      if (obj2.hasOwnProperty(key) && !obj1.hasOwnProperty(key)) {
+      if (_.has(obj2, key) && !_.has(obj1, key)) {
         res.name = key;
         res.type = 'added';
         res.value = obj2[key];

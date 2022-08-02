@@ -12,7 +12,7 @@ const experiment = (filename) => path.resolve(process.cwd(), '__tests__', '__fix
 const correctResult = JSON.parse(readFileSync(getFixturePath('file1.json')));
 
 test('parse', () => {
-  expect(parser(readFileSync(getFixturePath('file1.json')), '.json')).toEqual(correctResult);
+  expect(parser(readFileSync(experiment('file1.json')), '.json')).toEqual(correctResult);
   expect(parser(readFileSync(getFixturePath('file1.yaml')), '.yaml')).toEqual(correctResult);
 });
 

@@ -1,6 +1,5 @@
 import _ from 'lodash';
 
-
 const stringify = (data, stylishDeep, spaceCount = 1, replacer = '    ') => {
   const iteraction = (node, deeper) => {
     if (!_.isObject(node)) {
@@ -14,7 +13,6 @@ const stringify = (data, stylishDeep, spaceCount = 1, replacer = '    ') => {
 };
 
 const stylish = (diffData, spaceCount = 1, replacer = '    ') => {
-    
   const iter = (node, deeper) => {
     const objects = node.flatMap((obj) => {
       const replacers = {

@@ -25,6 +25,7 @@ const plain = (diffData) => {
       if (obj.type === 'deleted') {
         return `Property '${acc + obj.name}' was removed`;
       }
+      return undefined;
     });
     return objects.filter((obj) => obj !== undefined).join('\n');
   };

@@ -23,7 +23,7 @@ const correctplain = readFileSync(getFixturePath('correctPlain.yaml'), 'utf8');
 const correctJSON = readFileSync(getFixturePath('correctJSON.yaml'), 'utf8');
 
 test('gendiff stylish', () => {
-  expect(gendiff(getFixturePath('file1.json'), getFixturePath('file2.json'), stylish)).toEqual(correctstylish);
+  expect(gendiff(experiment('file1.json'), getFixturePath('file2.json'), stylish)).toEqual(correctstylish);
   expect(gendiff(getFixturePath('file1.yaml'), getFixturePath('file2.yaml'), stylish)).toEqual(correctstylish);
   expect(gendiff(getFixturePath('file1.json'), getFixturePath('file2.yaml'), stylish)).toEqual(correctstylish);
 });

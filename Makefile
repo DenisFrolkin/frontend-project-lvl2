@@ -14,6 +14,6 @@ publish:
 	npm publish --dry-run
 
 hello:
-	echo 'Hello, Hexlet'
+	echo Hello, World!
 
 .PHONY: test

@@ -12,5 +12,8 @@ lint:
 
 publish:
 	npm publish --dry-run
+
+hello:
+	echo 'hello'
 	
 .PHONY: test

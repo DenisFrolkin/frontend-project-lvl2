@@ -1,3 +1,3 @@
-const json = (data) => data;
+const json = (data) => `${JSON.stringify(data)}`;
 
 export default json;

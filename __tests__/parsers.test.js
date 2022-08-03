@@ -12,12 +12,12 @@ const experiment = (filename) => path.resolve(process.cwd(), '__tests__', '__fix
 const correctResult = JSON.parse(readFileSync(getFixturePath('file1.json')));
 
 test('parse', () => {
-  expect(parser(readFileSync(experiment('file1.json')), '.json')).toEqual(correctResult);
-  expect(parser(readFileSync(getFixturePath('file1.yaml')), '.yaml')).toEqual(correctResult);
+  expect(parser(experiment('file1.json'))).toEqual(correctResult);
+  expect(parser(getFixturePath('file1.yaml'))).toEqual(correctResult);
 });
 
 test('ObjectType', () => {
-  expect(typeof parser(readFileSync(getFixturePath('file1.json')), '.json')).toEqual('object');
-  expect(typeof parser(readFileSync(getFixturePath('file1.yaml')), '.yaml')).toEqual('object');
-  expect(typeof parser(readFileSync(getFixturePath('correctFile.txt')), '.txt')).toEqual('undefined');
+  expect(typeof parser(getFixturePath('file1.json'))).toEqual('object');
+  expect(typeof parser(getFixturePath('file1.yaml'))).toEqual('object');
+  expect(typeof parser(getFixturePath('correctFile.txt'))).toEqual('undefined');
 });

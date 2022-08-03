@@ -53,7 +53,7 @@ const gendiff = (filepath1, filepath2, format) => {
       res.value = obj1[key];
       return res;
     });
-    console.log(diff)
+
     return diff;
   };
 

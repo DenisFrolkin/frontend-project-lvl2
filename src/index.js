@@ -18,10 +18,11 @@ const gendiff = (filepath1, filepath2, format) => {
 
     const diff = keys.map((key) => {
       if (typeof obj1[key] === 'object' && typeof obj2[key] === 'object') {
-        const res = {};
-        res.name = key;
-        res.type = 'same';
-        res.children = makeDiff(obj1[key], obj2[key]);
+        const res = {
+          name: key,
+          type: 'same',
+          children: `${makeDiff(obj1[key], obj2[key])}`
+        };
         return res;
       }
       if (obj1[key] === obj2[key]) {

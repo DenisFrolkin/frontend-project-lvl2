@@ -12,9 +12,9 @@ const __dirname = dirname(__filename);
 const getFixturePath = (filename) => path.join(__dirname, '__fixtures__', filename);
 const experiment = (filename) => path.resolve(process.cwd(), '__tests__', '__fixtures__', filename);
 
-const correctstylish = readFileSync(getFixturePath('correctStylish.yaml'), 'utf8');
-const correctplain = readFileSync(getFixturePath('correctPlain.yaml'), 'utf8');
-const correctJSON = readFileSync(getFixturePath('correctJSON.yaml'), 'utf8');
+const correctstylish = readFileSync(getFixturePath('correctStylish.yaml'), 'utf8').trim();
+const correctplain = readFileSync(getFixturePath('correctPlain.yaml'), 'utf8').trim();
+const correctJSON = readFileSync(getFixturePath('correctJSON.yaml'), 'utf8').trim();
 
 test('gendiff stylish', () => {
   expect(gendiff(experiment('file1.json'), getFixturePath('file2.json'), stylish)).toEqual(correctstylish);

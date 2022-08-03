@@ -37,7 +37,7 @@ const stylish = (diffData, spaceCount = 1, replacer = '    ') => {
 
     return `{\n${objects}\n${replacer.repeat(deeper)}}`;
   };
-  return `${iter(diffData, 0)}\n`;
+  return `${iter(diffData, 0)}`;
 };
 
 export default stylish;

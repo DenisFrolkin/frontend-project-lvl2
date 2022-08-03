@@ -26,31 +26,35 @@ const gendiff = (filepath1, filepath2, format) => {
         return res;
       }
       if (obj1[key] === obj2[key]) {
-        const res = {};
-        res.name = key;
-        res.type = 'same';
-        res.value = obj1[key];
+        const res = {
+          name: key,
+          type: 'same',
+          value: obj1[key],
+        };
         return res;
       }
       if (_.has(obj1, key) && _.has(obj2, key)) {
-        const res = {};
-        res.name = key;
-        res.type = 'changed';
-        res.value1 = obj1[key];
-        res.value2 = obj2[key];
+        const res = {
+          name: key,
+          type: 'changed',
+          value1: obj1[key],
+          value2: obj2[key],
+        };
         return res;
       }
       if (_.has(obj2, key) && !_.has(obj1, key)) {
-        const res = {};
-        res.name = key;
-        res.type = 'added';
-        res.value = obj2[key];
+        const res = {
+          name: key,
+          type: 'added',
+          value: obj2[key],
+        };
         return res;
       }
-      const res = {};
-      res.name = key;
-      res.type = 'deleted';
-      res.value = obj1[key];
+      const res = {
+        name: key,
+        type: 'deleted',
+        value: obj1[key],
+      };
       return res;
     });
 

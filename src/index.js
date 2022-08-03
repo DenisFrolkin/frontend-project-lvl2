@@ -21,7 +21,7 @@ const gendiff = (filepath1, filepath2, format) => {
         const res = {
           name: key,
           type: 'same',
-          children: `${makeDiff(obj1[key], obj2[key])}`
+          children: makeDiff(obj1[key], obj2[key]),
         };
         return res;
       }
@@ -53,7 +53,7 @@ const gendiff = (filepath1, filepath2, format) => {
       res.value = obj1[key];
       return res;
     });
-
+    console.log(diff)
     return diff;
   };
 

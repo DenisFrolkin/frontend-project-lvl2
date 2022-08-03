@@ -17,23 +17,22 @@ const gendiff = (filepath1, filepath2, format) => {
     const keys = _.sortBy(Object.keys({ ...obj1, ...obj2 }));
 
     const diff = keys.map((key) => {
-      const acc = {};
       if (typeof obj1[key] === 'object' && typeof obj2[key] === 'object') {
-        const res = acc;
+        const res = {};
         res.name = key;
         res.type = 'same';
         res.children = makeDiff(obj1[key], obj2[key]);
         return res;
       }
       if (obj1[key] === obj2[key]) {
-        const res = acc;
+        const res = {};
         res.name = key;
         res.type = 'same';
         res.value = obj1[key];
         return res;
       }
       if (_.has(obj1, key) && _.has(obj2, key)) {
-        const res = acc;
+        const res = {};
         res.name = key;
         res.type = 'changed';
         res.value1 = obj1[key];
@@ -41,13 +40,13 @@ const gendiff = (filepath1, filepath2, format) => {
         return res;
       }
       if (_.has(obj2, key) && !_.has(obj1, key)) {
-        const res = acc;
+        const res = {};
         res.name = key;
         res.type = 'added';
         res.value = obj2[key];
         return res;
       }
-      const res = acc;
+      const res = {};
       res.name = key;
       res.type = 'deleted';
       res.value = obj1[key];

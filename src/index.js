@@ -3,14 +3,15 @@ import path from 'path';
 import { readFileSync } from 'fs';
 import _ from 'lodash';
 import parser from './parsers.js';
-import stylish from '../formatters/stylish.js';
+import chooseFormatter from '../formatters/index.js';
 
 const ext = (filepath) => path.extname(filepath);
 const data = (filepath) => readFileSync(path.resolve(process.cwd(), filepath));
 
-const gendiff = (filepath1, filepath2, formater = stylish) => {
+const gendiff = (filepath1, filepath2, format) => {
   const object1 = parser(data(filepath1), ext(filepath1));
   const object2 = parser(data(filepath2), ext(filepath2));
+  const formater = chooseFormatter(format);
 
   const makeDiff = (obj1, obj2) => {
     const keys = _.sortBy(Object.keys({ ...obj1, ...obj2 }));

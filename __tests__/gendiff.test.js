@@ -17,21 +17,21 @@ const correctplain = readFileSync(getFixturePath('correctPlain.yaml'), 'utf8').t
 const correctJSON = readFileSync(getFixturePath('correctJSON.yaml'), 'utf8').trim();
 
 test('gendiff stylish', () => {
-  expect(gendiff(experiment('file1.json'), getFixturePath('file2.json'), stylish)).toEqual(correctstylish);
-  expect(gendiff(getFixturePath('file1.yaml'), getFixturePath('file2.yaml'), stylish)).toEqual(correctstylish);
-  expect(gendiff(getFixturePath('file1.json'), getFixturePath('file2.yaml'), stylish)).toEqual(correctstylish);
+  expect(gendiff(experiment('file1.json'), getFixturePath('file2.json'), 'stylish')).toEqual(correctstylish);
+  expect(gendiff(getFixturePath('file1.yaml'), getFixturePath('file2.yaml'), 'stylish')).toEqual(correctstylish);
+  expect(gendiff(getFixturePath('file1.json'), getFixturePath('file2.yaml'), 'stylish')).toEqual(correctstylish);
 });
 
 test('gendiff plain', () => {
-  expect(gendiff(getFixturePath('file1.json'), getFixturePath('file2.json'), plain)).toEqual(correctplain);
-  expect(gendiff(getFixturePath('file1.yaml'), getFixturePath('file2.yaml'), plain)).toEqual(correctplain);
-  expect(gendiff(getFixturePath('file1.json'), getFixturePath('file2.yaml'), plain)).toEqual(correctplain);
+  expect(gendiff(getFixturePath('file1.json'), getFixturePath('file2.json'), 'plain')).toEqual(correctplain);
+  expect(gendiff(getFixturePath('file1.yaml'), getFixturePath('file2.yaml'), 'plain')).toEqual(correctplain);
+  expect(gendiff(getFixturePath('file1.json'), getFixturePath('file2.yaml'), 'plain')).toEqual(correctplain);
 });
 
 test('gendiff json', () => {
-  expect(gendiff(getFixturePath('file1.json'), getFixturePath('file2.json'), json)).toEqual(correctJSON);
-  expect(gendiff(getFixturePath('file1.yaml'), getFixturePath('file2.yaml'), json)).toEqual(correctJSON);
-  expect(gendiff(getFixturePath('file1.json'), getFixturePath('file2.yaml'), json)).toEqual(correctJSON);
+  expect(gendiff(getFixturePath('file1.json'), getFixturePath('file2.json'), 'json')).toEqual(correctJSON);
+  expect(gendiff(getFixturePath('file1.yaml'), getFixturePath('file2.yaml'), 'json')).toEqual(correctJSON);
+  expect(gendiff(getFixturePath('file1.json'), getFixturePath('file2.yaml'), 'json')).toEqual(correctJSON);
 });
 
 test('stringType', () => {

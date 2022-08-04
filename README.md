@@ -21,22 +21,22 @@
 
 [![asciicast](https://asciinema.org/a/IjlH3fI5qMUbEuvmhinrOp95D.svg)](https://asciinema.org/a/IjlH3fI5qMUbEuvmhinrOp95D)
 
-* сравнение плоских файлов .json
+* сравнение плоских файлов .json с выводом в формате по умолчанию(stylish)
 
 [![asciicast](https://asciinema.org/a/CmkBkC4KmKujKsmdyRLMtNhN3.svg)](https://asciinema.org/a/CmkBkC4KmKujKsmdyRLMtNhN3)
 
-* сравнение плоских файлов .json и .yml
+* сравнение плоских файлов .json и .yml с выводом в формате по умолчанию(stylish)
 
 [![asciicast](https://asciinema.org/a/MX88mIYySuY2znbt546nrguRE.svg)](https://asciinema.org/a/MX88mIYySuY2znbt546nrguRE)
 
-* рекурсивное сравнение в формате по умолчанию(stylish)
+* рекурсивное сравнение в формате с выводом в формате по умолчанию(stylish)
 
 [![asciicast](https://asciinema.org/a/DVszBV0mEoMgjw4MBQFOuugrJ.svg)](https://asciinema.org/a/DVszBV0mEoMgjw4MBQFOuugrJ)
 
-* рекурсивное сравнение в формате plain
+* рекурсивное сравнение с выводом в формате plain
 
 [![asciicast](https://asciinema.org/a/dSNyak4oasQlMVlbKISJnTtGp.svg)](https://asciinema.org/a/dSNyak4oasQlMVlbKISJnTtGp)
 
-* рекурсивное сравнение в формате json
+* рекурсивное сравнение с выводом в формате json
 
 [![asciicast](https://asciinema.org/a/bS9RBZeBQFBi9KkidmkzXnWS1.svg)](https://asciinema.org/a/bS9RBZeBQFBi9KkidmkzXnWS1)

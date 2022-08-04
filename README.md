@@ -29,7 +29,7 @@
 
 [![asciicast](https://asciinema.org/a/MX88mIYySuY2znbt546nrguRE.svg)](https://asciinema.org/a/MX88mIYySuY2znbt546nrguRE)
 
-* рекурсивное сравнение в формате с выводом в формате по умолчанию(stylish)
+* рекурсивное сравнение с выводом в формате по умолчанию(stylish)
 
 [![asciicast](https://asciinema.org/a/DVszBV0mEoMgjw4MBQFOuugrJ.svg)](https://asciinema.org/a/DVszBV0mEoMgjw4MBQFOuugrJ)
 

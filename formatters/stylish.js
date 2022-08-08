@@ -6,10 +6,10 @@ const stringify = (data, stylishDeep, spaceCount = 1, replacer = '    ') => {
       return `${node}`;
     }
     const entries = Object.entries(node);
-    const result = entries.flatMap(([key, value]) => `${replacer.repeat(spaceCount * deeper)}${key}: ${iteraction(value, deeper + 1)}`).join('\n');
-    return `{\n${result}\n${replacer.repeat((deeper - 1) * spaceCount)}}`;
+    const result = entries.flatMap(([key, value]) => `${replacer.repeat(spaceCount * deeper)}${replacer}${key}: ${iteraction(value, deeper + 1)}`).join('\n');
+    return `{\n${result}\n${replacer.repeat((deeper) * spaceCount)}}`;
   };
-  return iteraction(data, stylishDeep + 2);
+  return iteraction(data, stylishDeep);
 };
 
 const stylish = (diffData, spaceCount = 1, replacer = '    ') => {
@@ -27,12 +27,12 @@ const stylish = (diffData, spaceCount = 1, replacer = '    ') => {
         return `${replacer.repeat(spaceCount * deeper)}${replacers.same}${obj.name}: ${obj.value}`;
       }
       if (obj.type === 'added') {
-        return `${replacer.repeat(spaceCount * deeper)}${replacers.added}${obj.name}: ${stringify(obj.value, deeper)}`;
+        return `${replacer.repeat(spaceCount * deeper)}${replacers.added}${obj.name}: ${stringify(obj.value, deeper + 1)}`;
       }
       if (obj.type === 'deleted') {
-        return `${replacer.repeat(spaceCount * deeper)}${replacers.deleted}${obj.name}: ${stringify(obj.value, deeper)}`;
+        return `${replacer.repeat(spaceCount * deeper)}${replacers.deleted}${obj.name}: ${stringify(obj.value, deeper + 1)}`;
       }
-      return `${replacer.repeat(spaceCount * deeper)}${replacers.deleted}${obj.name}: ${stringify(obj.value1, deeper)}\n${replacer.repeat(spaceCount * deeper)}${replacers.added}${obj.name}: ${stringify(obj.value2, deeper)}`;
+      return `${replacer.repeat(spaceCount * deeper)}${replacers.deleted}${obj.name}: ${stringify(obj.value1, deeper + 1)}\n${replacer.repeat(spaceCount * deeper)}${replacers.added}${obj.name}: ${stringify(obj.value2, deeper + 1)}`;
     }).join('\n');
 
     return `{\n${objects}\n${replacer.repeat(deeper)}}`;

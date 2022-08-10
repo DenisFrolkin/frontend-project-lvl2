@@ -9,7 +9,9 @@ const chooseFormatter = (format) => {
   if (format === 'json') {
     return json;
   }
-  return stylish;
+  if (format === 'stylish') {
+    return stylish;
+  }
 };
 
 export default chooseFormatter;

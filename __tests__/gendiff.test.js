@@ -25,7 +25,7 @@ test.each([
 });
 
 test('stringType', () => {
-  expect(typeof gendiff(getFixturePath('file1.json'), getFixturePath('file2.json'), stylish)).toEqual('string');
-  expect(typeof gendiff(getFixturePath('file1.yaml'), getFixturePath('file2.yaml'), plain)).toEqual('string');
-  expect(typeof gendiff(getFixturePath('file1.json'), getFixturePath('file2.yaml'), json)).toEqual('string');
+  expect(typeof gendiff(getFixturePath('file1.json'), getFixturePath('file2.json'), 'stylish')).toEqual('string');
+  expect(typeof gendiff(getFixturePath('file1.yaml'), getFixturePath('file2.yaml'), 'plain')).toEqual('string');
+  expect(typeof gendiff(getFixturePath('file1.json'), getFixturePath('file2.yaml'), 'json')).toEqual('string');
 });

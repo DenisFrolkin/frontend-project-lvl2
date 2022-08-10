@@ -32,7 +32,10 @@ const stylish = (diffData, spaceCount = 1, replacer = '    ') => {
       if (obj.type === 'deleted') {
         return `${replacer.repeat(spaceCount * deeper)}${replacers.deleted}${obj.name}: ${stringify(obj.value, deeper + 1)}`;
       }
-      return `${replacer.repeat(spaceCount * deeper)}${replacers.deleted}${obj.name}: ${stringify(obj.value1, deeper + 1)}\n${replacer.repeat(spaceCount * deeper)}${replacers.added}${obj.name}: ${stringify(obj.value2, deeper + 1)}`;
+      if (obj.type === 'changed') {
+        return `${replacer.repeat(spaceCount * deeper)}${replacers.deleted}${obj.name}: ${stringify(obj.value1, deeper + 1)}\n${replacer.repeat(spaceCount * deeper)}${replacers.added}${obj.name}: ${stringify(obj.value2, deeper + 1)}`;
+      }
+      return undefined;
     }).join('\n');
 
     return `{\n${objects}\n${replacer.repeat(deeper)}}`;

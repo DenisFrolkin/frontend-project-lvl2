@@ -12,6 +12,7 @@ const chooseFormatter = (format) => {
   if (format === 'stylish') {
     return stylish;
   }
+  return undefined;
 };
 
 export default chooseFormatter;

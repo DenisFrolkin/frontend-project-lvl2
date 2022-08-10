@@ -6,7 +6,6 @@ import chooseFormatter from './formatters/index.js';
 const gendiff = (filepath1, filepath2, format) => {
   const object1 = parser(filepath1);
   const object2 = parser(filepath2);
-  const formatter = chooseFormatter(format);
 
   const makeDiff = (obj1, obj2) => {
     const keys = _.sortBy(Object.keys({ ...obj1, ...obj2 }));
@@ -56,7 +55,7 @@ const gendiff = (filepath1, filepath2, format) => {
     return diff;
   };
 
-  return formatter(makeDiff(object1, object2));
+  return chooseFormatter(format)(makeDiff(object1, object2));
 };
 
 export default gendiff;

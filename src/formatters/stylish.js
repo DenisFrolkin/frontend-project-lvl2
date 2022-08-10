@@ -16,11 +16,12 @@ const stylish = (diffData, spaceCount = 1, replacer = '    ') => {
   const iter = (node, deeper) => {
     const objects = node.flatMap((obj) => {
       const replacers = {
+        nested: '    ',
         same: '    ',
         added: '  + ',
         deleted: '  - ',
       };
-      if (obj.children) {
+      if (obj.type === 'nested') {
         return `${replacer.repeat(spaceCount * deeper)}${replacers[obj.type]}${obj.name}: ${(iter(obj.children, deeper + 1))}`;
       }
       if (obj.type === 'same') {

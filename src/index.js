@@ -14,7 +14,7 @@ const gendiff = (filepath1, filepath2, format = 'stylish') => {
       if (_.isPlainObject(obj1[key]) && _.isPlainObject(obj2[key])) {
         const res = {
           name: key,
-          type: 'same',
+          type: 'nested',
           children: makeDiff(obj1[key], obj2[key]),
         };
         return res;

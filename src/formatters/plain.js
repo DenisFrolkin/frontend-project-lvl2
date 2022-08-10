@@ -13,7 +13,7 @@ const makeQuotation = (value) => {
 const plain = (diffData) => {
   const iter = (node, acc) => {
     const objects = node.flatMap((obj) => {
-      if (obj.children) {
+      if (obj.type === 'nested') {
         return `${iter(obj.children, `${acc}${obj.name}.`)}`;
       }
       if (obj.type === 'added') {

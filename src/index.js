@@ -11,7 +11,7 @@ const gendiff = (filepath1, filepath2, format = 'stylish') => {
     const keys = _.sortBy(Object.keys({ ...obj1, ...obj2 }));
 
     const diff = keys.map((key) => {
-      if (typeof obj1[key] === 'object' && typeof obj2[key] === 'object') {
+      if (_.isPlainObject(obj1[key]) && _.isPlainObject(obj2[key])) {
         const res = {
           name: key,
           type: 'same',
@@ -36,7 +36,7 @@ const gendiff = (filepath1, filepath2, format = 'stylish') => {
         };
         return res;
       }
-      if (_.has(obj2, key) && !_.has(obj1, key)) {
+      if (_.has(obj2, key)) {
         const res = {
           name: key,
           type: 'added',

@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const makeQuotation = (value) => {
+const formatValue = (value) => {
   if (_.isObject(value)) {
     return '[complex value]';
   }
@@ -13,19 +13,18 @@ const makeQuotation = (value) => {
 const plain = (diffData) => {
   const iter = (node, acc) => {
     const objects = node.flatMap((obj) => {
-      if (obj.type === 'nested') {
-        return `${iter(obj.children, `${acc}${obj.name}.`)}`;
+      switch (obj.type) {
+        case 'nested':
+          return `${iter(obj.children, `${acc}${obj.name}.`)}`;
+        case 'added':
+          return `Property '${acc}${obj.name}' was added with value: ${formatValue(obj.value)}`;
+        case 'changed':
+          return `Property '${acc + obj.name}' was updated. From ${formatValue(obj.value1)} to ${formatValue(obj.value2)}`;
+        case 'deleted':
+          return `Property '${acc + obj.name}' was removed`;
+        default:
+          return undefined;
       }
-      if (obj.type === 'added') {
-        return `Property '${acc}${obj.name}' was added with value: ${makeQuotation(obj.value)}`;
-      }
-      if (obj.type === 'changed') {
-        return `Property '${acc + obj.name}' was updated. From ${makeQuotation(obj.value1)} to ${makeQuotation(obj.value2)}`;
-      }
-      if (obj.type === 'deleted') {
-        return `Property '${acc + obj.name}' was removed`;
-      }
-      return undefined;
     });
     return objects.filter((obj) => obj !== undefined).join('\n');
   };

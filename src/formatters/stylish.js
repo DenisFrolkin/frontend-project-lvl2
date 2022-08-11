@@ -1,19 +1,18 @@
 import _ from 'lodash';
 
-const stringify = (data, stylishDeep, spaceCount = 1, replacer = '    ') => {
-  const iteraction = (node, deeper) => {
-    if (!_.isObject(node)) {
-      return `${node}`;
-    }
-    const entries = Object.entries(node);
-    const result = entries.flatMap(([key, value]) => `${replacer.repeat(spaceCount * deeper)}${replacer}${key}: ${iteraction(value, deeper + 1)}`).join('\n');
-    return `{\n${result}\n${replacer.repeat((deeper) * spaceCount)}}`;
-  };
-  return iteraction(data, stylishDeep);
+const makeSpaces = (depth, spaceCount = 1, replacer = '    ') => replacer.repeat(spaceCount * depth);
+
+const stringify = (node, depth) => {
+  if (!_.isObject(node)) {
+    return `${node}`;
+  }
+  const entries = Object.entries(node);
+  const result = entries.flatMap(([key, value]) => `${makeSpaces(depth + 1)}${key}: ${stringify(value, depth + 1)}`).join('\n');
+  return `{\n${result}\n${makeSpaces(depth)}}`;
 };
 
-const stylish = (diffData, spaceCount = 1, replacer = '    ') => {
-  const iter = (node, deeper) => {
+const stylish = (diffData) => {
+  const iter = (node, depth) => {
     const objects = node.flatMap((obj) => {
       const replacers = {
         nested: '    ',
@@ -23,21 +22,21 @@ const stylish = (diffData, spaceCount = 1, replacer = '    ') => {
       };
       switch (obj.type) {
         case 'nested':
-          return `${replacer.repeat(spaceCount * deeper)}${replacers[obj.type]}${obj.name}: ${(iter(obj.children, deeper + 1))}`;
+          return `${makeSpaces(depth)}${replacers[obj.type]}${obj.name}: ${(iter(obj.children, depth + 1))}`;
         case 'same':
-          return `${replacer.repeat(spaceCount * deeper)}${replacers.same}${obj.name}: ${obj.value}`;
+          return `${makeSpaces(depth)}${replacers.same}${obj.name}: ${obj.value}`;
         case 'added':
-          return `${replacer.repeat(spaceCount * deeper)}${replacers.added}${obj.name}: ${stringify(obj.value, deeper + 1)}`;
+          return `${makeSpaces(depth)}${replacers.added}${obj.name}: ${stringify(obj.value, depth + 1)}`;
         case 'changed':
-          return `${replacer.repeat(spaceCount * deeper)}${replacers.deleted}${obj.name}: ${stringify(obj.value1, deeper + 1)}\n${replacer.repeat(spaceCount * deeper)}${replacers.added}${obj.name}: ${stringify(obj.value2, deeper + 1)}`;
+          return `${makeSpaces(depth)}${replacers.deleted}${obj.name}: ${stringify(obj.value1, depth + 1)}\n${makeSpaces(depth)}${replacers.added}${obj.name}: ${stringify(obj.value2, depth + 1)}`;
         case 'deleted':
-          return `${replacer.repeat(spaceCount * deeper)}${replacers.deleted}${obj.name}: ${stringify(obj.value, deeper + 1)}`;
+          return `${makeSpaces(depth)}${replacers.deleted}${obj.name}: ${stringify(obj.value, depth + 1)}`;
         default:
           return undefined;
       }
     }).join('\n');
 
-    return `{\n${objects}\n${replacer.repeat(deeper)}}`;
+    return `{\n${objects}\n${makeSpaces(depth)}}`;
   };
   return `${iter(diffData, 0)}`;
 };

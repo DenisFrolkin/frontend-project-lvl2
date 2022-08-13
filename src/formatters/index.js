@@ -3,16 +3,16 @@ import plain from './plain.js';
 import json from './json.js';
 
 const chooseFormatter = (format) => {
-  if (format === 'plain') {
-    return plain;
+  switch (format) {
+    case 'plain':
+      return plain;
+    case 'json':
+      return json;
+    case 'stylish':
+      return stylish;
+    default:
+      throw Error(console.log(`${format} - unknown format name`));
   }
-  if (format === 'json') {
-    return json;
-  }
-  if (format === 'stylish') {
-    return stylish;
-  }
-  return undefined;
 };
 
 export default chooseFormatter;

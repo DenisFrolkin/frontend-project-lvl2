@@ -32,7 +32,7 @@ const stylish = (diffData) => {
         case 'deleted':
           return `${makeSpaces(depth)}${replacers.deleted}${obj.name}: ${stringify(obj.value, depth + 1)}`;
         default:
-          return undefined;
+          throw Error(`${obj.type} - unknown type`);
       }
     }).join('\n');
 
